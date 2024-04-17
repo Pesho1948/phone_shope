@@ -9,19 +9,34 @@ const sql_db = mysql.createConnection({
 })
 
 const app = express()
-// check GET request
-app.get("/", (request, response) =>{
-    response.json("Successful GET request.")
-})
+//So we can POST json from client
+app.use(express.json())
 
-app.get("/phones", (request, response) =>{
+// gets all phones for sale
+app.get("/", (request, response) =>{
     const query = "SELECT * FROM phones"
 
-    sql_db.query(query,(data, error)=>{
+    sql_db.query(query,(data, error) => {
         if(error) return response.json(error)
         return response.json(data)
     })
 })
+
+app.post("/phones", (request, response) => {
+    const query = "INSERT INTO `test`.`phones` (`model`, `description`, `price`) VALUES (?)"
+    const vals = [
+        request.body.model,
+        request.body.description,
+        request.body.price
+    ]
+
+    sql_db.query(query,[vals], (error, data) => {
+        if(error) return response.json(error)
+        return response.json("Phone added")
+    })    
+
+})
+
 app.listen(8081, ()=>{
     console.log("Listening on port 8081.")
 })
