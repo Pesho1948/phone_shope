@@ -1,0 +1,41 @@
+.App{
+    padding: 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.phones{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    flex-direction: column;
+}
+
+img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border: thick;
+  }
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input{
+    width: 250px;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.ButtonForm{
+    border: none;
+    padding: 10px;
+    background-color: brown;
+    color: white;
+    font-weight: bold;
+}
